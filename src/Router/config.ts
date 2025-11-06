@@ -12,6 +12,7 @@ const router: TRouter = [{
 }, {
     path: '/project',
     components: Layout,
+    redirect:"/home",
     children: [
         { path: '/home', components: ProjectManage }
     ]

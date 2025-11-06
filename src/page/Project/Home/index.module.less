@@ -150,14 +150,43 @@
   margin-right: 14px;
   display: flex;
   flex-direction: column;
+  width: 100%;
+
 }
 
 .contentHeadButton {
+
+  height: 70px;
+  overflow-x: auto;
+  width: 100%;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  flex-wrap: wrap;
-  height: auto;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // .globalScripts {
+  //   position: fixed;
+  //   background-color: #FFF;
+  //   padding: 0;
+  //   margin: 0;
+  //   border: 10px solid #FFF;
+  //   border-top: 0px;
+  //   border-bottom: 0px;
+  // }
+
+  .contentHeadButtonCenter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: 100%;
+    flex: 1;
+  }
 
   .comButton {
     width: auto;
@@ -172,6 +201,7 @@
     margin-right: 20px;
     margin-bottom: 20px;
     transition: all 0.5s;
+
   }
 
   .comButton:hover {
@@ -256,6 +286,6 @@
 }
 
 .codeindex {
- 
+
   display: inline-block;
 }
