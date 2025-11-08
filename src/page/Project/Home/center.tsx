@@ -14,17 +14,9 @@ interface IProps {
 }
 export default function Center(props: IProps) {
     const { currentProject, currentCommand, refCount, runCommand, logs, commandBoxRef } = props;
-    const boxRef = useRef<HTMLDivElement>(null);
-    const buttonBoxRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        if (buttonBoxRef.current && boxRef.current) {
-            if (buttonBoxRef.current.style) {
-                buttonBoxRef.current.style.width = (boxRef.current?.clientWidth - 30) + "px";
-            }
-        }
-    }, [])
-    return (<div className={styles.content} ref={boxRef}>
-        <div className={styles.contentHeadButton} ref={buttonBoxRef} style={{ width: "0px" }}>
+
+    return (<div className={styles.content} style={{ width: "0px" }}>
+        <div className={styles.contentHeadButton}  >
             <GlobalScripts className={`${styles.comButton} ${styles.globalScripts}`} item={{ path: currentProject?.path, }} />
             {/* <div className={styles.contentHeadButtonCenter}> */}
             {currentProject?.scripts?.filter?.(_ => _?.running === undefined)?.map((_: any) => {

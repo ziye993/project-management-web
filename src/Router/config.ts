@@ -2,23 +2,29 @@ import Layout from "../compomeents/Layout";
 import ProjectManage from "../page/Project/Home";
 import LocalChat from "../page/LocalChat/Home";
 import type { TRouter } from "./type";
-import ZiyeHome from "../page/Home";
 import NotFound from "../page/404";
+import Test1 from "../page/Test/test1";
+import Test2 from "../page/Test/test2";
 
 const router: TRouter = [{
     path: '/',
-    components: ZiyeHome
-
+    redirect: "",
+}, {
+    path: '/test1',
+    components: Test1,
+}, {
+    path: '/test2',
+    components: Test2
 }, {
     path: '/project',
     components: Layout,
-    redirect:"/home",
+    redirect: "home",
     children: [
         { path: '/home', components: ProjectManage }
     ]
 }, {
     path: '/localChat',
-    redirect: '/home',
+    redirect: '/localChat/home',
     children: [
         { path: '/home', components: LocalChat }
     ]

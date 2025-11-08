@@ -21,10 +21,10 @@ export function formatRouterAddKey(router: TRouter): TReductRouter {
 export function getComponentsToRouter() { }
 
 export const resolvePath = (path: string) => {
-    const currentPath = window.location.pathname; // 获取当前路径
+    const currentPath = window.location.pathname + ''; // 获取当前路径
 
     if (path.startsWith('/')) {
-        return (currentPath + path).split("/").filter(Boolean).join("/");
+        return "/" + (currentPath + path).split("/").filter(Boolean).join("/");
     }
     if (path.startsWith('./')) {
         let currentParts = currentPath.split('/').filter(Boolean);
