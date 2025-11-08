@@ -1,5 +1,5 @@
 import { ApiOutlined, CloseCircleOutlined, PauseCircleOutlined, PlayCircleOutlined } from '@ant-design/icons';
-import type { IProjectListItem, IProjectScript } from '../../../type';
+import type { IProjectListItem } from '../../../type';
 import styles from './index.module.less';
 
 

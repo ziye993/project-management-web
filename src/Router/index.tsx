@@ -48,7 +48,7 @@ const RouterProvider = (props: IRouterProviderProps) => {
     const [routerIds, setRouterIds] = useState<TRouterIds>([]);
     const data = useRef<any>(null);
     const routerReduce = useMemo(() => {
-        const nRouter = completeRouterConfig(router, "");
+        const nRouter = completeRouterConfig(router);
         const nfRouter = formatRouterAddKey(nRouter);
         return nfRouter
     }, [router]);

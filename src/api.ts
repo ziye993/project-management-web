@@ -1,6 +1,6 @@
 
 
-const baseUrl = 'http://127.0.0.1:30000/project';
+const baseUrl = 'http://127.0.0.1:30000/api/project';
 
 export async function post(url: string, data = {}) {
   const res = await fetch(baseUrl + url, {

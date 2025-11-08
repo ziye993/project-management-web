@@ -1,13 +1,13 @@
 import type { TReductRouter, TRouter } from "./type";
 
-export function completeRouterConfig(router: TRouter, partPath = ""): TRouter {
+export function completeRouterConfig(router: TRouter): TRouter {
 
     return router.map?.(_ => {
         return {
             ..._,
             path: _.path.replace(/\//g, ''),
             components: _.components,
-            children: _.children ? completeRouterConfig(_.children, _.path) : undefined,
+            children: _.children ? completeRouterConfig(_.children,) : undefined,
         }
     });
 }
