@@ -5,10 +5,11 @@ import type { TRouter } from "./type";
 import NotFound from "../page/404";
 import Test1 from "../page/Test/test1";
 import Test2 from "../page/Test/test2";
+import ZiyeHome from "../page/Home";
 
 const router: TRouter = [{
     path: '/',
-    redirect: "",
+    components: ZiyeHome,
 }, {
     path: '/test1',
     components: Test1,
