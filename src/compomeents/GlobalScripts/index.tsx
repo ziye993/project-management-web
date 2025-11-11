@@ -2,7 +2,7 @@ import { useState } from "react";
 import { openInVscode } from "../../api";
 import vscodeLogo from '../../assets/vscodeLogo.svg';
 import styles from './index.module.less';
-import { useNavigete } from "../../Router";
+// import { useNavigete } from "../../Router";
 
 interface IProps {
   className?: string;
@@ -10,7 +10,7 @@ interface IProps {
 }
 export default function (props: IProps) {
   const [status, setStatus] = useState({ vscode: false });
-  const {push} = useNavigete();
+  // const { push } = useNavigete();
   console.log(status)
   const vscodeClick = async () => {
     if (!props.item) {
@@ -26,7 +26,5 @@ export default function (props: IProps) {
 
   return <>
     <div className={`${styles.globalScriptBox} ${props.className}`} onClick={() => vscodeClick()}><img src={vscodeLogo} /></div>
-
-    <div className={`${styles.globalScriptBox} ${props.className}`} onClick={() =>push("/localChat",{}) }><img src={vscodeLogo} />跳转测试</div>
   </>
 }

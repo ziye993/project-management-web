@@ -1,11 +1,82 @@
 .box {
-  width: 100vw;
-  height: 40px;
+  width: 100%;
+  height: 60px;
   position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  background: linear-gradient(180deg, rgb(242, 242, 242, 1) 0%, rgb(242, 242, 242, 1) 40%, rgba(255, 255, 255, 1));
+
+  .userBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+
+    .UserName {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background-color: #0099ff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 50px;
+      font-weight: 900;
+      font-size: 20px;
+      color: #FFF;
+      cursor: pointer;
+    }
+
+    .userMenu {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      position: absolute;
+      top: 0px;
+      right: -120px;
+      padding-top: 50px;
+      transition: all 0.5s;
+      opacity: 0;
+      z-index: -1;
+
+      .userMenuContent {
+
+        border-radius: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-right: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        min-width: 100px;
+      }
+
+      .menuitem {
+        cursor: pointer;
+        padding: 5px 10px;
+        width: 100%;
+        text-align: right;
+        transition: all 0.5s;
+        border-radius: 10px;
+        background-color: #ffffff;
+      }
+
+      .menuitem:hover {
+        background-color: #f9f9f9;
+      }
+    }
+
+  }
+
+  .userBox:hover {
+    .userMenu {
+      right: -10px;
+      opacity: 1;
+      z-index: 10;
+    }
+  }
 }

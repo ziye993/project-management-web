@@ -21,31 +21,35 @@ const RouterContext = createContext<TRouterContextValue>(null!);
 
 
 const getNewTargetRouter = (historyIds: (string | number)[], redirect: string) => {
+    let routerIds = [];
     if (redirect.startsWith('/')) {
-        return [...redirect.slice(1, redirect.length).split("/")]
+        routerIds = [...redirect.slice(1, redirect.length).split("/")]
     } else {
-        return [...historyIds, ...redirect.split('/').filter(Boolean)]
+        routerIds = [...historyIds, ...redirect.split('/').filter(Boolean)]
     }
+    return routerIds.length > 1 ? routerIds.filter(Boolean) : routerIds
 }
 // 路由查找函数
 const findRouter = (routerReduce: TReductRouter, routerIds: (string | number)[], historyIds: (string | number)[], originRouterReduct: TReductRouter): { type: RouterStatus, pathIds: (string | number)[] } => {
     const [pathId, ...otherPaths] = routerIds;
-    if (routerIds?.length === 1 && routerReduce[pathId] && !routerReduce[pathId]?.children && !routerReduce[pathId].redirect)
+    if (!otherPaths?.length && routerReduce[pathId] && !routerReduce[pathId]?.redirect) {
         return { type: RouterStatus.OK, pathIds: [...historyIds, pathId] };
-    else if (!otherPaths?.length || !routerReduce[pathId]?.children) {
-        if (routerReduce[pathId]?.redirect) {
-            const newIds = getNewTargetRouter([...historyIds, pathId], routerReduce[pathId]?.redirect);
-            return findRouter(originRouterReduct, newIds, [], originRouterReduct)
-        }
+    } else if (routerReduce[pathId]?.children && !!otherPaths.length) {
+        return findRouter(routerReduce[pathId]?.children, otherPaths, [...historyIds, pathId], originRouterReduct);
+    } else if (routerReduce[pathId] && !otherPaths.length && routerReduce[pathId]?.redirect) {
+        const newIds = getNewTargetRouter([...historyIds, pathId], routerReduce[pathId]?.redirect);
+        return findRouter(originRouterReduct, newIds, [], originRouterReduct)
+    } else if (!routerReduce[pathId] && !!historyIds.length) {
         return { type: RouterStatus.PARTIAL_MATCH, pathIds: [...historyIds, pathId] };
-    } else if (!routerReduce[pathId])
+    } else {
         return { type: RouterStatus.NOT_FOUND, pathIds: [...historyIds, pathId] };
-    return findRouter(routerReduce[pathId].children, otherPaths, [...historyIds, pathId], originRouterReduct);
+    }
 };
 
 const RouterProvider = (props: IRouterProviderProps) => {
     const router = [...props.router];
     const [routerIds, setRouterIds] = useState<TRouterIds>([]);
+
     const data = useRef<any>(null);
     const routerReduce = useMemo(() => {
         const nRouter = completeRouterConfig(router);
@@ -67,6 +71,20 @@ const RouterProvider = (props: IRouterProviderProps) => {
     useEffect(() => {
         const pathname = window.location.pathname;
         onPopState(pathname)
+    }, []);
+
+    useEffect(() => {
+        const onUrlChange = () => {
+            onPopState();
+        };
+
+        window.addEventListener('popstate', onUrlChange);
+        window.addEventListener('hashchange', onUrlChange);
+
+        return () => {
+            window.removeEventListener('popstate', onUrlChange);
+            window.removeEventListener('hashchange', onUrlChange);
+        };
     }, []);
 
     return <RouterContext.Provider value={{ routerIds, setRouterIds, data, routerReduce, onPopState }}>
@@ -108,9 +126,11 @@ export function useNavigete() {
     const { data, onPopState } = useContext(RouterContext);
 
     return {
-        push: (url: string, state: any) => {
-            onPopState(url)
-            data.current = state;
+        push: (url: string, state?: any) => {
+            onPopState(url);
+            if (state) {
+                data.current = state;
+            }
         },
         state: data.current
     }

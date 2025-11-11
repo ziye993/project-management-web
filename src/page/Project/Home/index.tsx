@@ -174,7 +174,8 @@ export default function ProjectManage() {
       });
       return nPrev
     });
-
+    logRef.current[currentProject?.value][item.value] = undefined;
+    setRefCount(prev => prev + 1)
   }
 
   useEffect(() => {

@@ -16,9 +16,9 @@ interface IProps {
 
 export default function useUserInfo(props?: IProps) {
     const [userInfo, setUserInfo] = useState<IUserInfo>(mockData);
-    
-    const changePassword = (oldPawssword: string) => {
 
+    const changePassword = (oldPawssword: string) => {
+        console.log(oldPawssword, 'oldPawssword', setUserInfo, props);
         return true;
     }
     return {

@@ -6,14 +6,6 @@
   "scripts": {
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "preview1": "vite preview",
-    "preview2": "vite preview",
-    "preview3": "vite preview",
-    "preview4": "vite preview",
-    "preview5": "vite preview",
-    "preview6": "vite preview",
-    "preview7": "vite preview",
     "dev": "vite"
   },
   "dependencies": {

@@ -6,6 +6,7 @@ import NotFound from "../page/404";
 import Test1 from "../page/Test/test1";
 import Test2 from "../page/Test/test2";
 import ZiyeHome from "../page/Home";
+import ImageHome from "../page/Image/Home";
 
 const router: TRouter = [{
     path: '/',
@@ -25,9 +26,15 @@ const router: TRouter = [{
     ]
 }, {
     path: '/localChat',
-    redirect: '/localChat/home',
+    redirect: 'home',
     children: [
         { path: '/home', components: LocalChat }
+    ]
+}, {
+    path: '/image',
+    redirect: 'home',
+    children: [
+        { path: '/home', components: ImageHome }
     ]
 }, {
     path: '/404',

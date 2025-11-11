@@ -1,5 +1,17 @@
+@font-face {
+  font-family: 'AlibabaPuhui';
+  /* 定义字体名称 */
+  src: url('/src/assets/alibaba-puhui.otf') format('opentype');
+  /* 指定字体文件的路径 */
+  font-weight: normal;
+  /* 可选，设置字体的粗细 */
+  font-style: normal;
+  /* 可选，设置字体的样式 */
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'AlibabaPuhui', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* 使用自定义字体 */
   line-height: 1.5;
   font-weight: 400;
 
@@ -11,6 +23,20 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+* {
+  font-family: 'AlibabaPuhui', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+#modalRoot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  z-index: 1000;
 }
 
 a {
@@ -29,6 +55,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 h1 {
