@@ -1,7 +1,7 @@
 
 import { SyncOutlined, PlusSquareOutlined, HomeOutlined } from '@ant-design/icons'
 import styles from './index.module.less';
-import { addProjectFolder } from '../../api';
+import { addProjectFolder } from '../../server/project';
 import { useNavigete } from '../../Router';
 
 export default function ToolHead(props: any) {

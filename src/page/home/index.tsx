@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import UserHeader from '../../compomeents/UserHeader'
 import styles from './index.module.less'
-import { AlignLeftOutlined, BarChartOutlined, CodeOutlined, DesktopOutlined, FileOutlined, FolderOpenOutlined, FundViewOutlined, PartitionOutlined } from '@ant-design/icons'
+import { AlignLeftOutlined, BarChartOutlined, CodeOutlined, DesktopOutlined, FolderOpenOutlined, FundViewOutlined, PartitionOutlined } from '@ant-design/icons'
 import { useNavigete } from '../../Router'
 
 const _data = {
@@ -51,8 +51,10 @@ const _data = {
 }
 
 export default function ZiyeHome() {
-    const [data, setData] = useState(_data.data);
+    const [data, setData] = useState<any[]>([]);
     const { push } = useNavigete();
+
+    useEffect(() => { setData(_data.data || []) }, [_data.data])
     return <div className={styles.box}>
 
         <div className={styles.content}>

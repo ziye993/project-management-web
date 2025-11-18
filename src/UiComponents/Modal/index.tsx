@@ -12,6 +12,7 @@ interface IProps {
   onClose?: () => void;
   onOK?: () => void;
   children?: React.ReactNode;
+  width?: string | number;
   [key: string]: any;
 }
 
@@ -29,17 +30,19 @@ const DomModal = (props: IProps) => {
     }
   }, [open]);
 
-  return (renderModal && <div className={styles.box}>
-    <div className={styles.content}>
+  return (renderModal && <div className={styles.box} >
+    <div className={styles.content} style={{ width: props.width }}>
       <div className={styles.title}><div>{props.title || ""}</div> <span><CloseOutlined onClick={onClose} /></span></div>
       <div className={styles.userContent}>{props.children}</div>
       <div className={styles.footer}>
         <Button color='primary' onClick={onOK}>确定</Button>
-        <Button >取消</Button>
+        <Button onClick={onClose}>取消</Button>
       </div>
     </div>
   </div>)
 }
+
+
 
 
 export default function Modal(props: IProps) {

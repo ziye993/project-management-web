@@ -9,7 +9,6 @@ interface IProps {
 
 export default function UserHeader(props: IProps) {
     const { userInfo } = useUserInfo();
-    console.log(props)
     return <div className={`${styles.box} ${props.className || ''}`}>
         <div className={styles.otherChildren}>
             {props.children}

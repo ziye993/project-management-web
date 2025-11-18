@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { openInVscode } from "../../api";
+
 import vscodeLogo from '../../assets/vscodeLogo.svg';
 import styles from './index.module.less';
+import { openInVscode } from "../../server/project";
 // import { useNavigete } from "../../Router";
 
 interface IProps {

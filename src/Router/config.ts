@@ -7,16 +7,17 @@ import Test1 from "../page/Test/test1";
 import Test2 from "../page/Test/test2";
 import ZiyeHome from "../page/Home";
 import ImageHome from "../page/Image/Home";
+import ConfigHome from "../page/Config/Home";
 
 const router: TRouter = [{
     path: '/',
     components: ZiyeHome,
 }, {
-    path: '/test1',
-    components: Test1,
-}, {
-    path: '/test2',
-    components: Test2
+    path: '/config',
+    redirect: "home",
+    children: [
+        { path: '/home', components: ConfigHome }
+    ]
 }, {
     path: '/project',
     components: Layout,

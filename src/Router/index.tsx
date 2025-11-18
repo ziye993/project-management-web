@@ -62,7 +62,7 @@ const RouterProvider = (props: IRouterProviderProps) => {
         const pathname = window.location.pathname;
         const _routerids = getNewTargetRouter([...routerIds], url || pathname)
         const routerRes = findRouter(routerReduce, _routerids, [], routerReduce);
-        console.log(routerRes, 'routerRes', _routerids)
+        // console.log(routerRes, 'routerRes', _routerids)
         if (routerRes?.type === RouterStatus.OK) {
             setRouterIds(routerRes.pathIds);
         } else setRouterIds([routerRes?.type]);

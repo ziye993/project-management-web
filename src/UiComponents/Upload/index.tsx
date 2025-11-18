@@ -6,8 +6,7 @@ export default function (props: any) {
     const [fileList, setFileList] = useState<any[]>([]);
     const fileListRef = useRef<any[]>([]);
 
-    const fileChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e?.target?.files);
+    const fileChange = async (e: ChangeEvent<HTMLInputElement>) => {
         const newFiles: any[] = [];
         const newFileRef: any[] = [];
         const files = e?.target?.files;
@@ -16,7 +15,6 @@ export default function (props: any) {
         }
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
-
             // 检查 item 是否是 File 对象
             if (file instanceof File) {
                 newFiles.push({
@@ -26,23 +24,33 @@ export default function (props: any) {
                 newFileRef.push(file);
             }
         }
-
         setFileList(prev => [...prev, ...newFiles])
         fileListRef.current = [...fileListRef.current, ...newFileRef];
+        try {
+            await props.onChange(fileListRef.current)
+        } catch (error) {
+
+        }
+
     }
-    const deleteListItem = (index: number) => {
+    const deleteListItem = async (index: number) => {
         setFileList(prev => {
             const nprev = [...prev];
             nprev.splice(index, 1);
             return nprev
         });
         fileListRef.current = fileListRef.current?.splice(index, 1);
+        try {
+            await props.onChange(fileListRef.current)
+        } catch (error) {
+
+        }
     }
-    console.log(fileList, fileListRef.current)
+
     return <>
         <div className={styles.uploadBox} >
             <PlusOutlined /> <span>选择照片或视频</span>
-            <input type='file' onChange={(e) => fileChange(e)} {...props} />
+            <input type='file' {...props} onChange={(e) => fileChange(e)} />
         </div>
         <div className={styles.fileList}>
             {fileList.length ? <div className={styles.fleListItem} style={{ fontSize: '14px', lineHeight: '16px', marginTop: "10px", color: '#919191ff', marginBottom: '8px' }}>

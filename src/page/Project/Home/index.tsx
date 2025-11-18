@@ -1,7 +1,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import styles from './index.module.less'
-import { getProjectList, forceRefreshList as _forceRefreshList, runCom, stopCommand, getRunningList, getLogs } from '../../../api';
+import { getProjectList, forceRefreshList as _forceRefreshList, runCom, stopCommand, getRunningList, getLogs } from '../../../server/project';
 import ToolHead from '../../../compomeents/ToolHeader';
 import Left from './left';
 import type { IProjectData as _IProjectData } from '../../../type';
